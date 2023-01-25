@@ -1,0 +1,1782 @@
+{
+	"info": {
+		"_postman_id": "70fab8d8-2ccd-4179-8674-8b0e2b7ef993",
+		"name": "User API (Yondu)",
+		"description": "This API demonstrates a basic user management system implementing authentication, CRUD functions for a users table.\n\n**Required Environment Variables:**\n\naccessToken\n\nrefreshToken\n\nuserId\n\ndelUserId",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8930057"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);\r",
+									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refreshToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Authenticates an admin user by providing the username and password, and returns the accessToken and refreshToken used in accessing the authenticated endpoints.\n\n**Body Params:**\n\nusername (string)\n\npassword (string)"
+					},
+					"response": [
+						{
+							"name": "Admin Login (Successful Login)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "386"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"182-+1veL50zQRyuCxU2/rQECdJdVWQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jan 2023 19:50:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJzaWQiOjEsImlhdCI6MTY3NDY3NjIyNCwiZXhwIjoxNjc0Njc2NTI0fQ.3dw-i0e1ROlJ2AkvdDeZdZmt0kEuqgnv5OnCUaU3yh4\",\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJzaWQiOjEsImlhdCI6MTY3NDY3NjIyNCwiZXhwIjoxNjc3MjY4MjI0fQ.V--YlWky6d-nrLTALIJRxPEbtZWCpGeNfn5KkahHqoA\"\n}"
+						},
+						{
+							"name": "Admin Login (Unsuccessful Login)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"passwords\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-dBEoW0UmTF+EGUMaprEp9/8zNNA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jan 2023 19:52:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Invalid credentials\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Generate Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{refreshToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/auth/tokens",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"tokens"
+							]
+						},
+						"description": "Allows the admin to generate a new access token by sending the valid refresh token in the Authentication header."
+					},
+					"response": [
+						{
+							"name": "Generate Access Token (Valid Refresh Token)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/auth/tokens",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"auth",
+										"tokens"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "202"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ca-bkvZmuvWKZxVwT3tfQqVzGbJw0U\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jan 2023 19:53:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoiTWFpYS5Sb2JlcnRzIiwic2lkIjoyLCJpYXQiOjE2NzQ2NzY0MDMsImV4cCI6MTY3NDY3NjcwM30.rL5WgImfx3GoTr8cqWSxnj9KPpk7jf238g1S-VqIz2E\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Admin Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);\r",
+									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refreshToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						},
+						"description": "Invalidates the session of the admin based on the provided access token in the Authentication header."
+					},
+					"response": [
+						{
+							"name": "Admin Logout (Valid Access Token)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/auth/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-JQGER0KIsgSZrEMQLjGOtqVfEv4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jan 2023 19:54:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accessToken\": null,\n    \"refreshToken\": null\n}"
+						}
+					]
+				}
+			],
+			"description": "Contains the endpoints for admin login, logout, and generation of access token."
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Get all the records of the users table."
+					},
+					"response": [
+						{
+							"name": "Get Users (Valid Access Token)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "5129"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1409-4wks4zpyOpu2XeT3Zqi2O8M651Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jan 2023 20:08:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"firstname\": \"Federico\",\n        \"lastname\": \"Huels\",\n        \"address\": \"South San Francisco\",\n        \"postcode\": \"80825\",\n        \"phone\": \"+639707151466\",\n        \"email\": \"Federico8@gmail.com\",\n        \"username\": \"Antwon72\",\n        \"password\": \"$2b$10$3LthT2XmPY5bs3jiHCMt3ej2Bumh20fEt.cvm.YFTVkR9qPflMue2\"\n    },\n    {\n        \"id\": 2,\n        \"firstname\": \"Adriana\",\n        \"lastname\": \"Hartmann\",\n        \"address\": \"Keelingview\",\n        \"postcode\": \"32329-0380\",\n        \"phone\": \"+639804852594\",\n        \"email\": \"Adriana.Hartmann26@hotmail.com\",\n        \"username\": \"Gracie_Maggio36\",\n        \"password\": \"$2b$10$09Ggi1r4o9mwTo8BjSFu3OzHgKO4OhYwcSuN/PCzMovQL85ZAMTxO\"\n    },\n    {\n        \"id\": 3,\n        \"firstname\": \"Adrian\",\n        \"lastname\": \"Grimes\",\n        \"address\": \"East Pauline\",\n        \"postcode\": \"76944\",\n        \"phone\": \"+639191484792\",\n        \"email\": \"Adrian89@hotmail.com\",\n        \"username\": \"Nelle.Crooks13\",\n        \"password\": \"$2b$10$HRZMTs6YC5Qq4XKO2pVmhezyqyAYhwE6A43k8PbF7D5f.1411ubzS\"\n    },\n    {\n        \"id\": 4,\n        \"firstname\": \"Mireya\",\n        \"lastname\": \"Leannon\",\n        \"address\": \"Hellerburgh\",\n        \"postcode\": \"42026-4329\",\n        \"phone\": \"+639970110306\",\n        \"email\": \"Mireya.Leannon@hotmail.com\",\n        \"username\": \"Adela63\",\n        \"password\": \"$2b$10$Q7yzP/IlIss.CBejCUmKQ.ArHngii0epJU5XZm1TlJBd4WMBBMZs2\"\n    },\n    {\n        \"id\": 5,\n        \"firstname\": \"Gilberto\",\n        \"lastname\": \"Trantow\",\n        \"address\": \"Dickensborough\",\n        \"postcode\": \"13979\",\n        \"phone\": \"+639149428900\",\n        \"email\": \"Gilberto_Trantow55@gmail.com\",\n        \"username\": \"Isaac75\",\n        \"password\": \"$2b$10$Fk9THjtl7Nxm5Dip/7IBp.ND0DsiljGx7zFJ9enFDN1hnvNN1QNR2\"\n    },\n    {\n        \"id\": 6,\n        \"firstname\": \"Harry\",\n        \"lastname\": \"Krajcik\",\n        \"address\": \"South Brayan\",\n        \"postcode\": \"19039-3892\",\n        \"phone\": \"+639852226201\",\n        \"email\": \"Harry.Krajcik@hotmail.com\",\n        \"username\": \"Brett20\",\n        \"password\": \"$2b$10$92P4qtu93p4H4cpgRZZB1ehv0Rc2YH33y42pyNhPpq4v2.m0a.zee\"\n    },\n    {\n        \"id\": 7,\n        \"firstname\": \"Bailee\",\n        \"lastname\": \"Hane\",\n        \"address\": \"Port Waynechester\",\n        \"postcode\": \"65540\",\n        \"phone\": \"+639177020815\",\n        \"email\": \"Bailee_Hane@hotmail.com\",\n        \"username\": \"Prudence.Robel4\",\n        \"password\": \"$2b$10$4/6HTKusOkfQWyxd.291a.8HQydIhwYpyX6XQlM6efUloFtB0V5YK\"\n    },\n    {\n        \"id\": 8,\n        \"firstname\": \"Calista\",\n        \"lastname\": \"Toy\",\n        \"address\": \"Bartolettiton\",\n        \"postcode\": \"40671-7685\",\n        \"phone\": \"+639769368255\",\n        \"email\": \"Calista32@hotmail.com\",\n        \"username\": \"Walter63\",\n        \"password\": \"$2b$10$ygVQBiYom43uqTSj5IyZ0.Ma5DexELK.MoRZfl28eE7sfOZNVdIQW\"\n    },\n    {\n        \"id\": 9,\n        \"firstname\": \"Dahlia\",\n        \"lastname\": \"Strosin\",\n        \"address\": \"Greysonview\",\n        \"postcode\": \"17746\",\n        \"phone\": \"+639209651919\",\n        \"email\": \"Dahlia.Strosin@hotmail.com\",\n        \"username\": \"Felicia.Moen31\",\n        \"password\": \"$2b$10$YmTFoSa4eFuiA1yxXpnAnO6WgZeiBmajaAiiSvfaN863O0ZB2wz0m\"\n    },\n    {\n        \"id\": 10,\n        \"firstname\": \"Josie\",\n        \"lastname\": \"Barton\",\n        \"address\": \"Millerfurt\",\n        \"postcode\": \"56819\",\n        \"phone\": \"+639659742719\",\n        \"email\": \"Josie.Barton52@yahoo.com\",\n        \"username\": \"Wilford_Hessel74\",\n        \"password\": \"$2b$10$FnDVmGzUH6C8yLDR3uSTMuy/t/a1C.LoGEncj1RYqxv0PpE49IGq.\"\n    },\n    {\n        \"id\": 11,\n        \"firstname\": \"Annabell\",\n        \"lastname\": \"Howe\",\n        \"address\": \"North Israelworth\",\n        \"postcode\": \"51741-6020\",\n        \"phone\": \"+639420787327\",\n        \"email\": \"Annabell_Howe80@gmail.com\",\n        \"username\": \"Marlene_Wyman\",\n        \"password\": \"$2b$10$/gYE.e5zKd1SeFGeWOqGlOSYeoRn2x7bNi3J2uokUikRd.v/2q7Sy\"\n    },\n    {\n        \"id\": 12,\n        \"firstname\": \"Aletha\",\n        \"lastname\": \"Huels\",\n        \"address\": \"Folsom\",\n        \"postcode\": \"83142-8671\",\n        \"phone\": \"+639867853559\",\n        \"email\": \"Aletha58@hotmail.com\",\n        \"username\": \"Mia.Donnelly69\",\n        \"password\": \"$2b$10$vb/5VpsXCzfE0hk3vI6xwOInyMs4gXv5bZM1m/J7l0wFyx.WTsZzi\"\n    },\n    {\n        \"id\": 13,\n        \"firstname\": \"Rosario\",\n        \"lastname\": \"Fadel\",\n        \"address\": \"Lake Jedidiah\",\n        \"postcode\": \"69621\",\n        \"phone\": \"+639998726224\",\n        \"email\": \"Rosario19@hotmail.com\",\n        \"username\": \"Lindsey1\",\n        \"password\": \"$2b$10$9ZNZXXZVLQBzePGVIGukoO1tLMXQsVYK9yg65b4xXuQBRpejZtW4i\"\n    },\n    {\n        \"id\": 14,\n        \"firstname\": \"Afton\",\n        \"lastname\": \"Streich\",\n        \"address\": \"Blockmouth\",\n        \"postcode\": \"67848-4916\",\n        \"phone\": \"+639904404742\",\n        \"email\": \"Afton_Streich50@yahoo.com\",\n        \"username\": \"Francis41\",\n        \"password\": \"$2b$10$3ge6jKPvzEXF/2V3eRkeQOp6eFgkq/e14/kVQAy8p2uxD2u/hzZRe\"\n    },\n    {\n        \"id\": 15,\n        \"firstname\": \"Gretchen\",\n        \"lastname\": \"Gleason\",\n        \"address\": \"Janetton\",\n        \"postcode\": \"27159-9112\",\n        \"phone\": \"+639759993604\",\n        \"email\": \"Gretchen_Gleason79@gmail.com\",\n        \"username\": \"John14\",\n        \"password\": \"$2b$10$3uhPhHulKr3clHAQxkDpr.3SL79X4P3YvvyXr.tG3uvauYB2JW.la\"\n    },\n    {\n        \"id\": 16,\n        \"firstname\": \"Art\",\n        \"lastname\": \"Watsica\",\n        \"address\": \"Avondale\",\n        \"postcode\": \"34931-0616\",\n        \"phone\": \"+639159699568\",\n        \"email\": \"Art83@hotmail.com\",\n        \"username\": \"Concepcion_Nitzsche\",\n        \"password\": \"$2b$10$aQCAbCDbTk4RXeITnLKc5uW8xlh1C/kQgLvQIFYlKv/Y9miaIjweS\"\n    },\n    {\n        \"id\": 17,\n        \"firstname\": \"Lafayette\",\n        \"lastname\": \"Lebsack\",\n        \"address\": \"North Lesterland\",\n        \"postcode\": \"40735\",\n        \"phone\": \"+639461973064\",\n        \"email\": \"Lafayette.Lebsack25@yahoo.com\",\n        \"username\": \"Hermina.Grant72\",\n        \"password\": \"$2b$10$N1pKVr0ze/5DlE8vOpnty.pTH0N2CsJtJSpNh1ubZ4mAaPME5n5Zi\"\n    },\n    {\n        \"id\": 18,\n        \"firstname\": \"Shanon\",\n        \"lastname\": \"Luettgen\",\n        \"address\": \"Lake Stellaworth\",\n        \"postcode\": \"47836-8113\",\n        \"phone\": \"+639139497594\",\n        \"email\": \"Shanon.Luettgen@hotmail.com\",\n        \"username\": \"Misty.Hettinger\",\n        \"password\": \"$2b$10$CX20eza/FsbBnUopYjHwgeOF2hAJR1JyTRI9/n0lDuqtnQxiYozJe\"\n    },\n    {\n        \"id\": 19,\n        \"firstname\": \"Darby\",\n        \"lastname\": \"Tromp\",\n        \"address\": \"East Sigridton\",\n        \"postcode\": \"01775\",\n        \"phone\": \"+639892501865\",\n        \"email\": \"Darby96@hotmail.com\",\n        \"username\": \"Casimer_Predovic65\",\n        \"password\": \"$2b$10$6BekR4AQYnWuVVYh/kGHu.ESYetJOncaNYQC57HBUEoY66jHajD9a\"\n    },\n    {\n        \"id\": 20,\n        \"firstname\": \"Ari\",\n        \"lastname\": \"Schuster\",\n        \"address\": \"Romaguerafort\",\n        \"postcode\": \"18281\",\n        \"phone\": \"+639490488938\",\n        \"email\": \"Ari95@yahoo.com\",\n        \"username\": \"Dayana.Hansen\",\n        \"password\": \"$2b$10$JNuqvHtKB5hHGabj1BWgtOcKGIgKW4qlCwRspCNrNqwOCNjfk9w9a\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Users by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/{{userId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						},
+						"description": "Get a specific user record by providing the user id.\n\n**Path Params:**\n\nid (number)"
+					},
+					"response": [
+						{
+							"name": "Get Users by Id (Valid Access Token and Existing User)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/users/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "251"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"fb-2Sr5bI2dj+FVOtOzK02kJE0r50c\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jan 2023 20:08:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"firstname\": \"Federico\",\n    \"lastname\": \"Huels\",\n    \"address\": \"South San Francisco\",\n    \"postcode\": \"80825\",\n    \"phone\": \"+639707151466\",\n    \"email\": \"Federico8@gmail.com\",\n    \"username\": \"Antwon72\",\n    \"password\": \"$2b$10$3LthT2XmPY5bs3jiHCMt3ej2Bumh20fEt.cvm.YFTVkR9qPflMue2\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"delUserId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Jeth\",\r\n    \"lastname\": \"Lee\",\r\n    \"address\": \"Pasig City, Metro Manila\",\r\n    \"postcode\": \"1608\",\r\n    \"phone\": \"+639129876543\",\r\n    \"email\": \"jeth.lee@email.com\",\r\n    \"username\": \"jeth.lee\",\r\n    \"password\": \"passwordofjeth\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Create a new user record.\n\n**Body Params:**\n\nfirstname (string)\n\nlastname (string)\n\naddress (string) \\[optional\\]\n\npostcode (string) \\[optional\\]\n\nphone (string) \\[optional\\]\n\nemail (string)\n\nusername (string)\n\npassword (string)"
+					},
+					"response": [
+						{
+							"name": "Create User (Valid Access Token and Complete Fields)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\": \"Jeth\",\r\n    \"lastname\": \"Lee\",\r\n    \"address\": \"Pasig City, Metro Manila\",\r\n    \"postcode\": \"1608\",\r\n    \"phone\": \"+639129876543\",\r\n    \"email\": \"jeth.lee@email.com\",\r\n    \"username\": \"jeth.lee\",\r\n    \"password\": \"passwordofjeth\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "249"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f9-AB37k2XaspbNf2JDoXb10H04aBE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jan 2023 20:09:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 21,\n    \"firstname\": \"Jeth\",\n    \"lastname\": \"Lee\",\n    \"address\": \"Pasig City, Metro Manila\",\n    \"postcode\": \"1608\",\n    \"phone\": \"+639129876543\",\n    \"email\": \"jeth.lee@email.com\",\n    \"username\": \"jeth.lee\",\n    \"password\": \"$2b$10$f0EDbjaa9LK3cqR13CBdJeD8dDGq/09TQtElyYMoW2k/y3csMzy2W\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Jeth\",\r\n    \"lastname\": \"Lee\",\r\n    \"address\": \"Marikina City, Metro Manila\",\r\n    \"postcode\": \"1608\",\r\n    \"phone\": \"+639129876543\",\r\n    \"email\": \"jeth.lee@email.com\",\r\n    \"username\": \"jeth.lee\",\r\n    \"password\": \"passwordofjeth\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/{{delUserId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{delUserId}}"
+							]
+						},
+						"description": "Replace an existing user resource with the details sent in the body of the request.\n\n**Path Params:**\n\nid (number)\n\n**Body Params:**\n\nfirstname (string)\n\nlastname (string)\n\naddress (string) \\[optional\\]\n\npostcode (string) \\[optional\\]\n\nphone (string) \\[optional\\]\n\nemail (string)\n\nusername (string)\n\npassword (string)"
+					},
+					"response": [
+						{
+							"name": "Update User by Id (Valid Access Token and Complete Fields)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\": \"Jeth\",\r\n    \"lastname\": \"Lee\",\r\n    \"address\": \"Marikina City, Metro Manila\",\r\n    \"postcode\": \"1608\",\r\n    \"phone\": \"+639129876543\",\r\n    \"email\": \"jeth.lee@email.com\",\r\n    \"username\": \"jeth.lee\",\r\n    \"password\": \"passwordofjeth\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/users/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "252"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"fc-P6UMAU8LYHut4+bnDW1pv3D8etY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jan 2023 20:10:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 21,\n    \"firstname\": \"Jeth\",\n    \"lastname\": \"Lee\",\n    \"address\": \"Marikina City, Metro Manila\",\n    \"postcode\": \"1608\",\n    \"phone\": \"+639129876543\",\n    \"email\": \"jeth.lee@email.com\",\n    \"username\": \"jeth.lee\",\n    \"password\": \"$2b$10$85YBoIvWccteIdlcsVd.YOsFvqv76/TDgyJL6Cnp9a8spCi3BCyKS\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Patch User by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Jeth\",\r\n    \"lastname\": \"Lee\",\r\n    \"address\": \"Pasay City, Metro Manila\",\r\n    \"postcode\": \"1500\",\r\n    \"phone\": \"+639129876543\",\r\n    \"email\": \"jeth.lee@email.com\",\r\n    \"username\": \"jeth.lee\",\r\n    \"password\": \"passwordofjeth\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/{{delUserId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{delUserId}}"
+							]
+						},
+						"description": "Update an existing user resource with only the specific fields sent in the body of the request.\n\n**Path Params:**\n\nid (number)\n\n**Body Params:**\n\nfirstname (string) \\[optional\\]\n\nlastname (string) \\[optional\\]\n\naddress (string) \\[optional\\]\n\npostcode (string) \\[optional\\]\n\nphone (string) \\[optional\\]\n\nemail (string) \\[optional\\]\n\nusername (string) \\[optional\\]\n\npassword (string) \\[optional\\]"
+					},
+					"response": [
+						{
+							"name": "Patch User by Id (Valid Access Token and with Updates)",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\": \"Jeth\",\r\n    \"lastname\": \"Lee\",\r\n    \"address\": \"Pasay City, Metro Manila\",\r\n    \"postcode\": \"1500\",\r\n    \"phone\": \"+639129876543\",\r\n    \"email\": \"jeth.lee@email.com\",\r\n    \"username\": \"jeth.lee\",\r\n    \"password\": \"passwordofjeth\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/users/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "249"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f9-yC72U441EzYaMFRh/8XUfO5pbmU\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jan 2023 20:11:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 21,\n    \"firstname\": \"Jeth\",\n    \"lastname\": \"Lee\",\n    \"address\": \"Pasay City, Metro Manila\",\n    \"postcode\": \"1500\",\n    \"phone\": \"+639129876543\",\n    \"email\": \"jeth.lee@email.com\",\n    \"username\": \"jeth.lee\",\n    \"password\": \"$2b$10$.B81A9nYyPF..wsO28yTi.qNu856MpIuBzXLw9.zTF0ZaLPMDw7aG\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete All Users",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Delete all resources in the user table."
+					},
+					"response": [
+						{
+							"name": "Delete All Users (Valid Access Token)",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "50"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"32-2v2NYZ22DmqTigPt1vc6z6c5J0U\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jan 2023 21:16:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"All users were successfully deleted.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/{{delUserId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{delUserId}}"
+							]
+						},
+						"description": "Delete an existing user resource by providing the user id.\n\n**Path Params:**\n\nid (number)"
+					},
+					"response": [
+						{
+							"name": "Delete User by Id (Valid Access Token and Existing User)",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/users/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-uD63LsjZKjmy+88GhxJHQc6iqLM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jan 2023 20:12:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User was successfully deleted.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Users by Ids",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ids\": [11,12,13,14,15]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/deleteByIds",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"deleteByIds"
+							]
+						},
+						"description": "Delete multiple user resources by providing an array of user ids in the body of the request.\n\n**Body** **Params:** ids (number\\[\\])\n\n**Possible Cases:**\n\n**Case:** The ids field is an empty array\n\n**Result:** Response has a 404 status and message: Resource not found.\n\n**Case:** All the ids in the array are existing resources\n\n**Result:** The specified user resources will be deleted, with a response of status 200 and message: Users were successfully deleted.\n\n**Case:** The ids field contains both exisiting and non existing user id\n\n**Result:** Existing user resources will be deleted, and the non existing user ids will be shown in the response with a message: Resource not found. Response has a 200 status.\n\n**Case:** The ids field contains all non existing user id\n\n**Result:** Response has a 404 status with the list of ids and message: Resource not found."
+					},
+					"response": [
+						{
+							"name": "Delete Users by Ids (Valid Access Token and Existing Users)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ids\": [11,12,13,14,15]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/users/deleteByIds",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"users",
+										"deleteByIds"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e-zxG8go1iBZ3jkKn09q1igyF+uUs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Jan 2023 20:12:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Users were successfully deleted.\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Contains the endpoints for the CRUD functions of the users table.",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{accessToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5000",
+			"type": "string"
+		}
+	]
+}

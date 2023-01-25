@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator factories {
+  provider = "prisma-factory-generator"
+}
+
+model admins {
+  id       Int        @id @default(autoincrement())
+  username String     @unique(map: "username_UNIQUE") @db.VarChar(255)
+  password String     @db.VarChar(255)
+  sessions sessions[]
+}
+
+model sessions {
+  id        Int      @id @default(autoincrement())
+  valid     Boolean  @default(true)
+  userAgent String?  @db.VarChar(255)
+  createdAt DateTime @default(now())
+  adminId   Int
+  admin     admins   @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([adminId], map: "sessions_adminId_fkey")
+}
+
+model users {
+  id        Int     @id @default(autoincrement())
+  firstname String  @db.VarChar(255)
+  lastname  String  @db.VarChar(255)
+  address   String? @db.VarChar(255)
+  postcode  String? @db.VarChar(10)
+  phone     String? @db.VarChar(13)
+  email     String  @unique(map: "email_UNIQUE") @db.VarChar(255)
+  username  String  @unique(map: "username_UNIQUE") @db.VarChar(255)
+  password  String  @db.VarChar(255)
+}
